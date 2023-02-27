@@ -1,10 +1,13 @@
 package lab01.example.model;
 
 public class SimpleBankAccountWithAtm implements BankAccount {
-    private final AccountHolder holder;
 
-    public SimpleBankAccountWithAtm(AccountHolder accountHolder) {
+    public static final int ATM_FEE = 1;
+    private final AccountHolder holder;
+    private double balance;
+    public SimpleBankAccountWithAtm(AccountHolder accountHolder, final double balance) {
         this.holder = accountHolder;
+        this.balance = balance;
     }
 
     @Override
@@ -14,12 +17,14 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public double getBalance() {
-        return 0;
+        return this.balance;
     }
 
     @Override
     public void deposit(int userID, double amount) {
-
+        if (this.holder.getId() == userID){
+            this.balance += (amount + ATM_FEE);
+        }
     }
 
     @Override
