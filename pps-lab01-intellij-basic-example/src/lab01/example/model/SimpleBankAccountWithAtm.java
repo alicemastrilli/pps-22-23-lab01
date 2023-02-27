@@ -2,42 +2,31 @@ package lab01.example.model;
 
 public class SimpleBankAccountWithAtm implements BankAccount {
 
-    public static final int ATM_FEE = 1;
-    private final AccountHolder holder;
-    private double balance;
+    private static final int ATM_FEE = 1;
+    private final SimpleBankAccount bankAccount;
+
     public SimpleBankAccountWithAtm(AccountHolder accountHolder, final double balance) {
-        this.holder = accountHolder;
-        this.balance = balance;
+        this.bankAccount = new SimpleBankAccount(accountHolder, balance);
     }
 
     @Override
     public AccountHolder getHolder() {
-        return this.holder;
+        return this.bankAccount.getHolder();
     }
 
     @Override
     public double getBalance() {
-        return this.balance;
+        return this.bankAccount.getBalance();
     }
 
     @Override
     public void deposit(int userID, double amount) {
-        if (this.checkUser(userID)){
-            this.balance += (amount - ATM_FEE);
-        }
+        this.bankAccount.deposit(userID, amount - ATM_FEE);
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-        if(this.checkUser(userID) && this.isWithdrawAllowed(amount)) {
-            this.balance -= (amount + ATM_FEE);
-        }
-    }
-    private boolean isWithdrawAllowed(final double amount){
-        return this.balance >= (amount + ATM_FEE);
-    }
-    private boolean checkUser(final int id) {
-        return this.holder.getId() == id;
+        this.bankAccount.withdraw(userID, amount + ATM_FEE);
     }
 
 }
