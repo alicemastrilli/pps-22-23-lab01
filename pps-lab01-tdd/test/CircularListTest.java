@@ -56,4 +56,14 @@ public class CircularListTest {
         assertEquals(Optional.of(2), circularList.next());
         assertEquals(Optional.of(1), circularList.next());
     }
+
+    @Test
+    void testGetPreviousElement(){
+        assertEquals(Optional.empty(), circularList.previous());
+        circularList.add(1);
+        circularList.add(2);
+        assertEquals(Optional.of(2), circularList.previous());
+        assertEquals(Optional.of(1), circularList.previous());
+        assertEquals(Optional.of(2), circularList.previous());
+    }
 }

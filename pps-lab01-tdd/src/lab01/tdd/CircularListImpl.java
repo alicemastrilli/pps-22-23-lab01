@@ -42,7 +42,13 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if (this.isEmpty()){
+            return Optional.empty();
+        }
+        if (--this.indexOfElement < 0){
+            this.indexOfElement = this.size()-1;
+        }
+        return Optional.of(this.circularList.get(indexOfElement));
     }
 
     @Override
