@@ -42,6 +42,19 @@ class SimpleBankAccountWithAtmTest {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.withdraw(accountHolder.getId(), 70);
         assertEquals(28, bankAccount.getBalance());
+        bankAccount.withdraw(accountHolder.getId(), 27);
+        assertEquals(0, bankAccount.getBalance());
+
+    }
+
+    @Test
+    void testWrongWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), 100);
+        bankAccount.withdraw(2, 70);
+        assertEquals(99, bankAccount.getBalance());
+        bankAccount.withdraw(accountHolder.getId(), 99);
+        assertEquals(99, bankAccount.getBalance());
+
     }
 
 }
