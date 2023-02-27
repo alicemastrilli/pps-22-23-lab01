@@ -29,4 +29,13 @@ public class CircularListTest {
     void testListInitiallyEmpty(){
         assertEquals(0, this.circularList.size());
     }
+
+    @Test
+    void testAddNewElement(){
+        circularList.add(1);
+        circularList.add(2);
+        assertEquals(2, circularList.size());
+    }
+
+
 }
