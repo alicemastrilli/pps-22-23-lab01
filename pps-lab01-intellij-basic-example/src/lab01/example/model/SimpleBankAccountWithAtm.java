@@ -22,13 +22,22 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void deposit(int userID, double amount) {
-        if (this.holder.getId() == userID){
-            this.balance += (amount + ATM_FEE);
+        if (this.checkUser(userID)){
+            this.balance += (amount - ATM_FEE);
         }
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-
+        if(this.checkUser(userID) && this.isWithdrawAllowed(amount)) {
+            this.balance -= (amount + ATM_FEE);
+        }
     }
+    private boolean isWithdrawAllowed(final double amount){
+        return this.balance >= (amount + ATM_FEE);
+    }
+    private boolean checkUser(final int id) {
+        return this.holder.getId() == id;
+    }
+
 }
