@@ -1,6 +1,6 @@
 package lab01.tdd1;
 
-import lab01.tdd.CircularListBase;
+import lab01.tdd.BaseCircularList;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import java.util.Optional;
  * Example: with a list like {1,2,3}, the first call of next() returns 1, the second call returns 2,
  * the third returns 3, the fourth returns 1, and so on. Call to previous() goes in the other way.
  */
-public interface CircularList extends CircularListBase {
+public interface CircularList extends BaseCircularList {
 
     /**
      * Provides the next element of the list, as given by the built-in iterator.

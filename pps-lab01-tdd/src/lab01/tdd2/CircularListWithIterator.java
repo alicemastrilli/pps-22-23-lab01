@@ -1,12 +1,10 @@
 package lab01.tdd2;
 
-import lab01.tdd.CircularListBase;
-import lab01.tdd1.CircularList;
+import lab01.tdd.BaseCircularList;
 
 import java.util.Iterator;
-import java.util.Optional;
 
-public interface CircularListWithIterator extends CircularListBase {
+public interface CircularListWithIterator extends BaseCircularList {
 
     Iterator<Integer> forwardIterator();
 

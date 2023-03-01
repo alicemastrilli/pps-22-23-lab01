@@ -1,9 +1,9 @@
 package lab01.tdd;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface CircularListBase {
+
+public interface BaseCircularList {
     /**
      * Adds an element to the list, namely, after the last inserted one.
      * @param element the element to be added to the list

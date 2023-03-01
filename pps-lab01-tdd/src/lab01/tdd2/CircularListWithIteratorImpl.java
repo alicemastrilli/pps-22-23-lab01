@@ -1,17 +1,17 @@
 package lab01.tdd2;
 
-import lab01.tdd.CircularListBase;
-import lab01.tdd.CircularListBaseImpl;
+import lab01.tdd.BaseCircularList;
+import lab01.tdd.BaseCircularListImpl;
 
 import java.util.*;
 
 public class CircularListWithIteratorImpl implements CircularListWithIterator {
-    private final CircularListBase circularList;
-    private int counter;
+    private final BaseCircularList circularList;
+    private int indexOfElement;
 
     public CircularListWithIteratorImpl() {
-        this.circularList = new CircularListBaseImpl();
-        this.counter = -1;
+        this.circularList = new BaseCircularListImpl();
+        this.indexOfElement = -1;
     }
 
     @Override
@@ -55,13 +55,13 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
             @Override
             public Integer next() {
-                counter+= valueToAddToCounter;
-                if (counter < 0) {
-                    counter = circularList.size()-1;
-                } else if(counter == circularList.size()){
-                    counter = 0;
+                indexOfElement += valueToAddToCounter;
+                if (indexOfElement < 0) {
+                    indexOfElement = circularList.size()-1;
+                } else if(indexOfElement == circularList.size()){
+                    indexOfElement = 0;
                 }
-                return circularList.getElements().get(counter);
+                return circularList.getElements().get(indexOfElement);
             }
         };
     }

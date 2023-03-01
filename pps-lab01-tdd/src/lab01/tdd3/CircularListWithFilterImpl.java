@@ -1,17 +1,17 @@
 package lab01.tdd3;
 
-import lab01.tdd.CircularListBase;
-import lab01.tdd.CircularListBaseImpl;
+import lab01.tdd.BaseCircularList;
+import lab01.tdd.BaseCircularListImpl;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 public class CircularListWithFilterImpl implements CircularListWithFilter {
-    private final CircularListBase circularList;
+    private final BaseCircularList circularList;
     private int elementPosition;
     public CircularListWithFilterImpl() {
-        this.circularList = new CircularListBaseImpl();
+        this.circularList = new BaseCircularListImpl();
         this.elementPosition = -1;
     }
 

@@ -2,12 +2,11 @@ package lab01.tdd;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class CircularListBaseImpl implements CircularListBase {
+public class BaseCircularListImpl implements BaseCircularList {
     private final List<Integer> circularList;
 
-    public CircularListBaseImpl() {
+    public BaseCircularListImpl() {
         this.circularList = new ArrayList<>();
     }
 

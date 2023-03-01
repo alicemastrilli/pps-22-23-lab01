@@ -1,19 +1,17 @@
 package lab01.tdd1;
 
-import lab01.tdd.CircularListBase;
-import lab01.tdd.CircularListBaseImpl;
-import lab01.tdd1.CircularList;
+import lab01.tdd.BaseCircularList;
+import lab01.tdd.BaseCircularListImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
-    private final CircularListBase circularList;
+    private final BaseCircularList circularList;
     private int indexOfElement;
 
     public CircularListImpl() {
-        this.circularList = new CircularListBaseImpl();
+        this.circularList = new BaseCircularListImpl();
         this.indexOfElement = -1;
     }
 
@@ -40,26 +38,26 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        if (this.isEmpty()){
-            return Optional.empty();
-        }
-        if (++this.indexOfElement == this.size() ){
-            this.indexOfElement = 0;
-        }
-        return Optional.of(this.getElements().get(indexOfElement));
+        return computeElementToReturn(+1);
     }
 
     @Override
     public Optional<Integer> previous() {
+        return computeElementToReturn(-1);
+    }
+
+    private Optional<Integer> computeElementToReturn(int valueToAddToActualIndex){
         if (this.isEmpty()){
             return Optional.empty();
         }
-        if (--this.indexOfElement < 0){
+        this.indexOfElement += valueToAddToActualIndex;
+        if (this.indexOfElement < 0){
             this.indexOfElement = this.size()-1;
+        } else if(this.indexOfElement >=this.size()){
+            this.indexOfElement = 0;
         }
         return Optional.of(this.getElements().get(indexOfElement));
     }
-
     @Override
     public void reset() {
         this.indexOfElement = -1;

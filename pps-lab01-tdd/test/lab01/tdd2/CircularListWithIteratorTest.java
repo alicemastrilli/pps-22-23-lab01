@@ -1,16 +1,13 @@
 package lab01.tdd2;
 
-import lab01.tdd1.CircularList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CircularListWithIteratorImplTest {
+class CircularListWithIteratorTest {
     private CircularListWithIterator circularList;
 
     @BeforeEach

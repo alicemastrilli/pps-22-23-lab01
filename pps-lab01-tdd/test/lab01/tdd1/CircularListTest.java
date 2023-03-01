@@ -1,7 +1,5 @@
 package lab01.tdd1;
 
-import lab01.tdd1.CircularList;
-import lab01.tdd1.CircularListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
