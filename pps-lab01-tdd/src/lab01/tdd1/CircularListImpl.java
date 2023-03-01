@@ -1,15 +1,19 @@
-package lab01.tdd;
+package lab01.tdd1;
+
+import lab01.tdd.CircularListBase;
+import lab01.tdd.CircularListBaseImpl;
+import lab01.tdd1.CircularList;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
-    private final List<Integer> circularList;
+    private final CircularListBase circularList;
     private int indexOfElement;
 
     public CircularListImpl() {
-        this.circularList = new ArrayList<>();
+        this.circularList = new CircularListBaseImpl();
         this.indexOfElement = -1;
     }
 
@@ -30,6 +34,11 @@ public class CircularListImpl implements CircularList {
     }
 
     @Override
+    public List<Integer> getElements() {
+        return this.circularList.getElements();
+    }
+
+    @Override
     public Optional<Integer> next() {
         if (this.isEmpty()){
             return Optional.empty();
@@ -37,7 +46,7 @@ public class CircularListImpl implements CircularList {
         if (++this.indexOfElement == this.size() ){
             this.indexOfElement = 0;
         }
-        return Optional.of(this.circularList.get(indexOfElement));
+        return Optional.of(this.getElements().get(indexOfElement));
     }
 
     @Override
@@ -48,7 +57,7 @@ public class CircularListImpl implements CircularList {
         if (--this.indexOfElement < 0){
             this.indexOfElement = this.size()-1;
         }
-        return Optional.of(this.circularList.get(indexOfElement));
+        return Optional.of(this.getElements().get(indexOfElement));
     }
 
     @Override
