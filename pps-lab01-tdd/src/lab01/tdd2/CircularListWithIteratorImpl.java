@@ -36,6 +36,17 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
     @Override
     public Iterator<Integer> forwardIterator() {
+        return this.computeIterator(1);
+
+    }
+
+    @Override
+    public Iterator<Integer> backwardIterator() {
+        return this.computeIterator(-1);
+
+    }
+
+    private Iterator<Integer> computeIterator(int valueToAddToCounter){
         return new Iterator<>() {
             @Override
             public boolean hasNext() {
@@ -44,30 +55,14 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
             @Override
             public Integer next() {
-                if (++counter == circularList.size()) {
+                counter+= valueToAddToCounter;
+                if (counter < 0) {
+                    counter = circularList.size()-1;
+                } else if(counter == circularList.size()){
                     counter = 0;
                 }
                 return circularList.getElements().get(counter);
             }
         };
     }
-
-    @Override
-    public Iterator<Integer> backwardIterator() {
-        return new Iterator<>() {
-            @Override
-            public boolean hasNext() {
-                return !circularList.isEmpty();
-            }
-
-            @Override
-            public Integer next() {
-                if (--counter < 0) {
-                    counter = circularList.size()-1;
-                }
-                return circularList.getElements().get(counter);
-            }
-        };
-    }
-
 }
