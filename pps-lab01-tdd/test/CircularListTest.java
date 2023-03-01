@@ -18,10 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CircularListTest {
 
     private CircularList circularList;
-    @Disabled
-    @Test public void testTodo(){
-        Assertions.fail();
-    }
 
     @BeforeEach
     void beforeEach(){
@@ -64,6 +60,21 @@ public class CircularListTest {
         circularList.add(2);
         assertEquals(Optional.of(2), circularList.previous());
         assertEquals(Optional.of(1), circularList.previous());
+        assertEquals(Optional.of(2), circularList.previous());
+    }
+
+    @Test
+    void testBothPreviousAndNextElement(){
+        assertEquals(Optional.empty(), circularList.previous());
+        assertEquals(Optional.empty(), circularList.next());
+        circularList.add(1);
+        circularList.add(2);
+        circularList.add(3);
+        circularList.add(4);
+        assertEquals(Optional.of(4), circularList.previous());
+        assertEquals(Optional.of(1), circularList.next());
+        assertEquals(Optional.of(2), circularList.next());
+        assertEquals(Optional.of(3), circularList.next());
         assertEquals(Optional.of(2), circularList.previous());
     }
 }

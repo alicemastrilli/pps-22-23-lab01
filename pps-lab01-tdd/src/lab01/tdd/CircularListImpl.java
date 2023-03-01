@@ -10,7 +10,7 @@ public class CircularListImpl implements CircularList {
 
     public CircularListImpl() {
         this.circularList = new ArrayList<>();
-        this.indexOfElement = 0;
+        this.indexOfElement = -1;
     }
 
 
@@ -34,10 +34,10 @@ public class CircularListImpl implements CircularList {
         if (this.isEmpty()){
             return Optional.empty();
         }
-        if (this.indexOfElement == this.size()){
+        if (++this.indexOfElement == this.size() ){
             this.indexOfElement = 0;
         }
-        return Optional.of(this.circularList.get(indexOfElement++));
+        return Optional.of(this.circularList.get(indexOfElement));
     }
 
     @Override
