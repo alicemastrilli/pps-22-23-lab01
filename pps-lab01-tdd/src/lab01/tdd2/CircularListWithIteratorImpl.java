@@ -8,6 +8,7 @@ import java.util.*;
 public class CircularListWithIteratorImpl implements CircularListWithIterator {
     private final CircularListBase circularList;
     private int counter;
+
     public CircularListWithIteratorImpl() {
         this.circularList = new CircularListBaseImpl();
         this.counter = -1;
@@ -32,6 +33,7 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
     public List<Integer> getElements() {
         return this.circularList.getElements();
     }
+
     @Override
     public Iterator<Integer> forwardIterator() {
         return new Iterator<>() {
@@ -42,7 +44,7 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
             @Override
             public Integer next() {
-                if (++counter == circularList.size()){
+                if (++counter == circularList.size()) {
                     counter = 0;
                 }
                 return circularList.getElements().get(counter);
@@ -52,6 +54,20 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        return null;
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return !circularList.isEmpty();
+            }
+
+            @Override
+            public Integer next() {
+                if (--counter < 0) {
+                    counter = circularList.size()-1;
+                }
+                return circularList.getElements().get(counter);
+            }
+        };
     }
+
 }

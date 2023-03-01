@@ -19,7 +19,7 @@ class CircularListWithIteratorImplTest {
     }
 
     @Test
-    void testGetNextElement(){
+    void testForwardIterator(){
         assertFalse(circularList.forwardIterator().hasNext());
         circularList.add(1);
         circularList.add(2);
@@ -29,5 +29,19 @@ class CircularListWithIteratorImplTest {
         assertEquals(2, forwardIterator.next());
         assertEquals(1, forwardIterator.next());
         assertEquals(2, forwardIterator.next());
+    }
+
+    @Test
+    void testBackwardIterator(){
+        assertFalse(circularList.backwardIterator().hasNext());
+        circularList.add(1);
+        circularList.add(2);
+        circularList.add(3);
+        Iterator<Integer> backwardIterator = circularList.backwardIterator();
+        assertTrue(circularList.backwardIterator().hasNext());
+        assertEquals(3, backwardIterator.next());
+        assertEquals(2, backwardIterator.next());
+        assertEquals(1, backwardIterator.next());
+        assertEquals(3, backwardIterator.next());
     }
 }
